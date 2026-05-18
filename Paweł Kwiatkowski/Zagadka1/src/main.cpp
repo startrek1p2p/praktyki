@@ -53,7 +53,7 @@ void loop() {
   }
 
   if((pressed_count == 6) && memcmp(prawidlowa_kombinacja, wpisana_kombinacja, sizeof(prawidlowa_kombinacja)) == 0){
-    Serial.println("Wpisano prawidłową kombinację!");
+    Serial.println("Wpisano prawidlowa kombinacje!");
     digitalWrite(RLAY, HIGH);
 
     // Reset kombinacji po poprawnym wpisaniu jest tylko do testu kodu
@@ -62,7 +62,7 @@ void loop() {
     pressed_count = 0;
   } 
   else if(pressed_count == 6){
-      Serial.println("Wpisano nieprawidłową kombinację - spróbuj ponownie.");
+      Serial.println("Wpisano nieprawidlowa kombinacje - sprobuj ponownie.");
       int wpisana_kombinacja [6] = {0, 0, 0, 0, 0, 0};
       pressed_count = 0;
   }
