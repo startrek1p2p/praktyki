@@ -3,7 +3,7 @@
 // Definicje pinow
 #define KOSTKA_1 18
 #define KOSTKA_2 13
-#define KOSTKA_3 27
+#define KOSTKA_3 15
 #define LED_BUILTIN 2
 
 const int cube_count = 3;
