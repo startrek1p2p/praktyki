@@ -5,6 +5,11 @@
 // dane Wi-Fi
 const char* ssid = "atlantyda";
 const char* password = "kotl1234";
+const IPAddress LOCAL_IP(192, 168, 1, 222);
+const IPAddress GATEWAY(192, 168, 1, 1);
+const IPAddress SUBNET(255, 255, 255, 0);
+const IPAddress PRIMARY_DNS(192, 168, 1, 1);
+const IPAddress SECONDARY_DNS(8, 8, 8, 8);
 
 // Definicje pinow
 constexpr byte LICZBA_PRZYCISKOW = 12;
@@ -77,7 +82,12 @@ void setup() {
   Serial.println();
   Serial.print("Connecting to ");
   Serial.println(ssid);
-  
+
+  WiFi.mode(WIFI_STA);
+  if (!WiFi.config(LOCAL_IP, GATEWAY, SUBNET, PRIMARY_DNS, SECONDARY_DNS)) {
+    Serial.println("Static IP configuration failed");
+  }
+
   WiFi.begin(ssid, password);
   
   while (WiFi.status() != WL_CONNECTED) {
@@ -119,6 +129,20 @@ void loop() {
 
     Serial.print("Received: ");
     Serial.println(request);
+    if (request.indexOf("ON") > -1) {
+      digitalWrite(PRZEKAZNIK_1, HIGH);
+      client.println("LED turned ON");
+    } 
+    else if (request.indexOf("OFF") > -1) {
+      digitalWrite(PRZEKAZNIK_1, LOW);
+      client.println("LED turned OFF");
+    }
+    else {
+      client.println("Unknown command");
+    }
+
+  client.stop();
+  Serial.println("Client disconnected");
 
   if (resetState == RESET_LOW_PHASE) {
     if (now - resetPhaseStart >= RESET_PHASE_MS) {
