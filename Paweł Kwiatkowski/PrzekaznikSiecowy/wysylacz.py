@@ -1,8 +1,8 @@
 import socket
 import sys
 
-# Przyciski dotykowe są na 192.168.1.222 port 100
-HOST, PORT = "192.168.1.222", 100
+# Przyciski dotykowe są na 192.168.1.220 port 100
+HOST, PORT = "192.168.1.220", 100
 data = " ".join(sys.argv[1:]).strip() or "OFF"
 
 # Create a socket (SOCK_STREAM means a TCP socket)
