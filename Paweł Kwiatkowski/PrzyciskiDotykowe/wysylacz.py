@@ -1,8 +1,8 @@
 import socket
 import sys
 
-HOST, PORT = "192.168.1.222", 100
-data = " ".join(sys.argv[1:]).strip() or "OFF"
+HOST, PORT = "192.168.1.220", 100
+data = " ".join(sys.argv[1:]).strip() or "ON"
 
 # Create a socket (SOCK_STREAM means a TCP socket)
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:

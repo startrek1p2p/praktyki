@@ -107,7 +107,7 @@ void setup() {
 void loop() {
   unsigned long now = millis();
 
-    // Check if a client has connected
+  // Check if a client has connected
   WiFiClient client = wifiServer.available();
 
   if (client) {
@@ -141,8 +141,9 @@ void loop() {
       client.println("Unknown command");
     }
 
-  client.stop();
-  Serial.println("Client disconnected");
+    client.stop();
+    Serial.println("Client disconnected");
+  }
 
   if (resetState == RESET_LOW_PHASE) {
     if (now - resetPhaseStart >= RESET_PHASE_MS) {
@@ -198,6 +199,5 @@ void loop() {
     resetPhaseStart = now;
     resetState = RESET_LOW_PHASE;
     wyczyscWpisanaKombinacje();
-    }
   }
 }
